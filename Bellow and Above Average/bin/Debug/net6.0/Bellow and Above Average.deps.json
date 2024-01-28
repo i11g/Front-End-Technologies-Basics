@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Bellow and Above Average/1.0.0": {
+        "runtime": {
+          "Bellow and Above Average.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bellow and Above Average/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
