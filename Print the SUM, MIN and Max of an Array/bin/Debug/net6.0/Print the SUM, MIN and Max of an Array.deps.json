@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Print the SUM, MIN and Max of an Array/1.0.0": {
+        "runtime": {
+          "Print the SUM, MIN and Max of an Array.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Print the SUM, MIN and Max of an Array/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
