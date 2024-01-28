@@ -1,0 +1,14 @@
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\bin\Debug\net6.0\Reading An Array From A Singel Line.exe
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\bin\Debug\net6.0\Reading An Array From A Singel Line.deps.json
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\bin\Debug\net6.0\Reading An Array From A Singel Line.runtimeconfig.json
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\bin\Debug\net6.0\Reading An Array From A Singel Line.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\bin\Debug\net6.0\Reading An Array From A Singel Line.pdb
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\Reading An Array From A Singel Line.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\Reading An Array From A Singel Line.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\Reading An Array From A Singel Line.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\Reading An Array From A Singel Line.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\Reading An Array From A Singel Line.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\refint\Reading An Array From A Singel Line.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\Reading An Array From A Singel Line.pdb
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\Reading An Array From A Singel Line.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays - V\Reading An Array From A Singel Line\obj\Debug\net6.0\ref\Reading An Array From A Singel Line.dll
