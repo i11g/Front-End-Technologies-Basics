@@ -1,0 +1,14 @@
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\bin\Debug\net6.0\Array Search.exe
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\bin\Debug\net6.0\Array Search.deps.json
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\bin\Debug\net6.0\Array Search.runtimeconfig.json
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\bin\Debug\net6.0\Array Search.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\bin\Debug\net6.0\Array Search.pdb
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\Array Search.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\Array Search.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\Array Search.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\Array Search.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\Array Search.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\refint\Array Search.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\Array Search.pdb
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\Array Search.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Array Search\obj\Debug\net6.0\ref\Array Search.dll

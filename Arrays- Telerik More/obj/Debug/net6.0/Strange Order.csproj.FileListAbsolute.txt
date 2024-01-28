@@ -1,0 +1,14 @@
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\bin\Debug\net6.0\Strange Order.exe
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\bin\Debug\net6.0\Strange Order.deps.json
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\bin\Debug\net6.0\Strange Order.runtimeconfig.json
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\bin\Debug\net6.0\Strange Order.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\bin\Debug\net6.0\Strange Order.pdb
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\Strange Order.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\Strange Order.AssemblyInfoInputs.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\Strange Order.AssemblyInfo.cs
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\Strange Order.csproj.CoreCompileInputs.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\Strange Order.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\refint\Strange Order.dll
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\Strange Order.pdb
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\Strange Order.genruntimeconfig.cache
+C:\Users\Admin\Desktop\Visual Studio Prog\Arrays- Telerik More\Arrays- Telerik More\obj\Debug\net6.0\ref\Strange Order.dll
