@@ -1,1 +1,1 @@
-Arrays Tasks
+The repo contains the materials from Fron-end Technologies Course at SoftUni
