@@ -1,1 +1,1 @@
-The repo contains the materials from Fron-end Technologies Course at SoftUni
+The repo contains the materials from Front-End Technologies Course at SoftUni
