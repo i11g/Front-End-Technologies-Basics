@@ -12,9 +12,13 @@ This repository contains my solutions of the tasks and projects included in Fron
 
 ## General Information
 The course is part of SoftUni QA Automation Program and focus on:
-- The course is part of SoftUni QA Automation Program and focus on:
-- 
-- 
+- Working with basic concepts of HTML and CSS
+- Working with the DOM and handling events
+- Working with basic concepts of the JavaScript language
+- Java Script async functions and promises
+- Test management with the qUnit 
+- Working with the Jasmine 
+
 
 ## Technologies Used
 - HTML 5, CSS and Java Script
