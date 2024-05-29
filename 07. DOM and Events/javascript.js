@@ -32,5 +32,10 @@
 // const third=list.getElementsByTagName('li')[2]
 // console.log(third) 
 
-const element=document.createElement("a")
-document.body.appendChild(element)
+// const element=document.createElement("input")
+// element.textContent="Click me"
+// document.body.appendChild(element) 
+
+const element=document.createElement("input")
+const parentElement=document.getElementById("newdiv") 
+parentElement.appendChild(element);
