@@ -39,3 +39,9 @@
 const element=document.createElement("input")
 const parentElement=document.getElementById("newdiv") 
 parentElement.appendChild(element);
+
+//clone еlements 
+
+const paragraph=document.getElementById("one")
+const clone=paragraph.cloneNode(true);
+document.body.appendChild(clone)
