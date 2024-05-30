@@ -32,16 +32,23 @@
 // const third=list.getElementsByTagName('li')[2]
 // console.log(third) 
 
+//add element
+
 // const element=document.createElement("input")
 // element.textContent="Click me"
 // document.body.appendChild(element) 
 
-const element=document.createElement("input")
-const parentElement=document.getElementById("newdiv") 
-parentElement.appendChild(element);
+// const element=document.createElement("input")
+// const parentElement=document.getElementById("newdiv") 
+// parentElement.appendChild(element);
 
 //clone еlements 
 
 const paragraph=document.getElementById("one")
 const clone=paragraph.cloneNode(true);
 document.body.appendChild(clone)
+
+//delete elements 
+
+const childElement=document.querySelectorAll("li")[3]
+childElement.parentNode.removeChild(childElement)
