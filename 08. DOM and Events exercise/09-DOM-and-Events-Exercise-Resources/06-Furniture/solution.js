@@ -1,3 +1,3 @@
 function solve() {
-  // TODO...
+    const [input, output]=document.getElementsByTagName("textarea")
 }
