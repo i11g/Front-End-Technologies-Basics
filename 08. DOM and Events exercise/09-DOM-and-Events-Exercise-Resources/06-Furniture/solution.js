@@ -49,8 +49,22 @@ function solve() {
       tableRow.appendChild(tableCheckBox)
 
       tableBody.appendChild(tableRow) 
-     }
+     }     
 
+    } 
+
+    function buyItems () {
+
+        let furniture=[]
+        let price=0;
+        let averageDecF=0;
+        let countItems=0;
+        let tableRows=document.getElementsByTagName('tr')
+
+        for (let index = 1; index < tableRows.length; index++) {
+            let checkedBox=document.getElementsByTagName('tr').children[4].childre[0].checked
+            
+        } 
     }
 
 
