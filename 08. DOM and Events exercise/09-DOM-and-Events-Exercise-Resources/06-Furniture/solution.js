@@ -41,7 +41,14 @@ function solve() {
       tableDecfactor.appendChild(tableDecfactorparagraph)
       tableRow.appendChild(tableDecfactor)
 
-      tableBody.appendChild(tableRow)
+      let tableCheckBox=document.createElement('td')
+      let tableCheckInput=document.createElement("input")
+      tableCheckInput.type="checkbox"
+      
+      tableCheckBox.appendChild(tableCheckInput)
+      tableRow.appendChild(tableCheckBox)
+
+      tableBody.appendChild(tableRow) 
      }
 
     }
