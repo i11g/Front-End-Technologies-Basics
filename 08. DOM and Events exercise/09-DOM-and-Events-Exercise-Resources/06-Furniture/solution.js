@@ -4,7 +4,7 @@ function solve() {
     const tableBody=document.getElementsByTagName("tbody")[0] 
 
     generateButton.addEventListener("click", generateRow)
-    //buyButton.addEventListener('click', buyItems) 
+    buyButton.addEventListener('click', buyItems) 
 
     function generateRow () {
      let data=JSON.parse(input.value)
@@ -61,12 +61,24 @@ function solve() {
         let countItems=0;
         let tableRows=document.getElementsByTagName('tr')
 
-        for (let index = 1; index < tableRows.length; index++) {
+        for (let i = 1; i < tableRows.length; i++) {
             let checkedBox=tableRows[i].children[4].children[0].checked
-            console.log(checkedBox)
-            
-        } 
+            if(checkedBox) {
+                countItems+=1;
+                furniture.push(tableRows[i].children[1].children[0].textContent)
+                price+=Number(tableRows[i].children[2].children[0].textContent)
+                averageDecF+=(Number(tableRows[i].children[3].children[0].textContent))
+            }
+        }
+
+        const result=`Bought furniture: ${furniture}
+            Total price: ${price}
+            Average decoration factor: ${averageDecF/countItems}`            
+         
+        output.textContent=result
+
     }
+
 
 
 }
