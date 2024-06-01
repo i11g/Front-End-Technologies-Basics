@@ -62,7 +62,8 @@ function solve() {
         let tableRows=document.getElementsByTagName('tr')
 
         for (let index = 1; index < tableRows.length; index++) {
-            let checkedBox=document.getElementsByTagName('tr').children[4].childre[0].checked
+            let checkedBox=tableRows[i].children[4].children[0].checked
+            console.log(checkedBox)
             
         } 
     }
