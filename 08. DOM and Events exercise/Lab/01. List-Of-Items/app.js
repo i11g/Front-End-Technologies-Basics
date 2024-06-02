@@ -9,6 +9,12 @@ function addItem() {
    newItem.textContent=input
    
    //append new element
-   addList.appendChild(newItem)
+   addList.append(newItem)
+
+   //clean value
+   inputField.value=''
    
+   //focus on input 
+
+   inputField.focus()
 }
