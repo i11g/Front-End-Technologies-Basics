@@ -1,1 +1,1 @@
-import {add} from "./function.js"
+const add=require ("./functions.js")
