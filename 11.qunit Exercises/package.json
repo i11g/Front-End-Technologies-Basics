@@ -1,0 +1,15 @@
+{
+  "name": "11.qunit-exercises",
+  "version": "1.0.0",
+  "main": "factorial.js",
+  "scripts": {
+    "test": "qunit "
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "commonjs",
+  "devDependencies": {
+    "qunit": "^2.21.0"
+  }
+}
