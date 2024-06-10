@@ -15,7 +15,7 @@ function factorial(num) {
     return num*factorial(num-1);
 }
 
-function isPalindrome(string) {
+function isPalindrom(string) {
 
     let cleanString=string.toLowerCase().replace(/[\W_]/g, '')
     let reversedString=cleanString.split('').reverse().join("")
@@ -87,4 +87,13 @@ function isPerfectSquare(num) {
     return Math.sqrt(num)%1===0;
 }
 
-
+module.exports={
+    sum,
+    isEven,
+    factorial,
+    isPalindrom,
+    fibonachi,
+    nthPrime,
+    pascalTrinagle,
+    isPerfectSquare
+}
