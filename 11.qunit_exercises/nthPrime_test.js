@@ -1,4 +1,4 @@
-const {ntPrimre} =require("./functions.js") 
+const {ntPrimre} =require("./tests_functions.js") 
 
 QUnit.module("nthPrime function", function(){
     QUnit.test("1th Prime", function(assert){
