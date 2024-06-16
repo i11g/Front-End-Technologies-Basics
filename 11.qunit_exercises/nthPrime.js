@@ -11,8 +11,6 @@ function nthPrime(n) {
     return num - 1
 } 
 
-
-
 function isPrime(num) {
    if(num<=1) return false; 
    if(num<=3) return true;
