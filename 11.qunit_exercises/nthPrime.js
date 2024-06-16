@@ -19,7 +19,6 @@ function isPrime(num) {
        if(num%i===0||num%(i+2)===0) return false;        
    }
    return true;
-}
-
+} 
 
 console.log(nthPrime(5))
