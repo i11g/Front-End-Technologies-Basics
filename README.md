@@ -1,4 +1,4 @@
-# Back End Technologies
+# Frond End Technologies Basics
 This repository contains my solutions of the tasks and projects included in Front End Technologies Basics course. 
 
 
