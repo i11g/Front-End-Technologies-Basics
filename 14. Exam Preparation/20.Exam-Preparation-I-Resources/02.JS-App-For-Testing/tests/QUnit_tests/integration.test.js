@@ -66,5 +66,61 @@ QUnit.module("User functionalities", ()=> {
 
           sessionStorage.setItem('meme-user', JSON.stringify(user))
 
+    }) 
+
+    QUnit.test("Login testing returns correct user data", async (assert)=>{
+         let path='/users/login'
+
+         let response= await fetch(basetUrl+path+{
+            method: 'POST',
+            headers: {
+                'content-type':'application/json'
+            },
+            body:JSON.stringify(user) 
+         }) 
+
+         assert.ok(response.ok, 'response is succesfull')
+         
+         let userData1=await response.json(); 
+
+         console.log(userData1)
+
+         assert.ok(userData1.hasOwnProperty('email'), 'email exists')
+         assert.equal(userData1['email'], user.email, 'expected email')
+         assert.strictEqual(typeof userData1.email, 'string', 'Property "email" is a string') 
+         
+         assert.ok(userData1.hasOwnProperty('password'), 'password exists')
+         assert.equal(userData1['password'], user.password, 'expected password')
+         assert.strictEqual(typeof userData1.password, 'string', 'Property "password" is a string')
+         
+         assert.ok(userData1.hasOwnProperty('accessToken'), "accessToken exist");
+        assert.strictEqual(typeof userData1.accessToken, 'string', 'Property "accessToken" is a string');
+
+        assert.ok(userData1.hasOwnProperty('_id'), "id exist");
+        assert.strictEqual(typeof userData1._id, 'string', 'Property "_id" is a string');
+
+         userId=userData1['_id']
+         token=userData1['accessToken']
+         sessionStorage.setItem('meme-user', JSON.stringify(user))         
+    })
+})
+
+QUnit.modulle("Meme functionality", ()=>{
+    QUnit.test('Get all memes return correct data', async(assert)=>{
+          let path='/data/meme'
+          let queryParam='?sortBy=_createdOn%20desc'
+
+          let promis=await fetch(basetUrl+path+queryParam) 
+
+          assert.ok(response.ok, 'response is succsesfyll')
+
+          let jsonMeme=await response.json();
+
+          assert.ok(Array.isArray(jsonMeme),'response ia an Array') 
+
+          jsonMeme.forEach(element => { 
+               assert.ok()   
+            
+          });
     })
 })
