@@ -1,4 +1,4 @@
-const basetUrl='http://localhost:3030'
+const baseUrl='http://localhost:3030/'
 
 const user={
     userName:"",
@@ -8,13 +8,13 @@ const user={
 } 
 
 let token= "";
-let userId=""
+let userId="";
 
 QUnit.config.reorder=false;
 
 QUnit.module("User functionalities", ()=> {
     QUnit.test("user registration returns correct user data", async(assert)=>{
-          let path='/users/register'
+          let path='users/register'
           let random=Math.floor(Math.random()*1000)
           let randomEmail=`abv${random}@abv.bg`
           let randomUserName=`Auto_Test_User_${random}` 
@@ -22,7 +22,7 @@ QUnit.module("User functionalities", ()=> {
           user.email=randomEmail;
           user.userName=randomUserName
           
-          let response= await fetch(basetUrl+path, {
+          let response= await fetch(baseUrl+path, {
             method: "POST",
             headers: {
                'content-type':'application/json'
@@ -32,19 +32,19 @@ QUnit.module("User functionalities", ()=> {
 
           assert.ok(response.ok, 'sucssesfull response')
 
-          let userData= await response.json();
-          console.log(userData)
+          let userData = await response.json();
+          
           
           assert.ok(userData.hasOwnProperty('email'), 'email exists')
           assert.equal(userData['email'], user.email, 'expected mail')
           assert.strictEqual(typeof userData.email, 'string', 'Prperty "email" is a string')
 
           assert.ok(userData.hasOwnProperty('gender'), 'gender exists')
-          assert.equal(userData.gender, user.gender, 'expected gender')
+          assert.equal(userData['gender'], user.gender, 'expected gender')
           assert.strictEqual(typeof userData.gender, 'string', 'Property "gender" is a string')
 
           assert.ok(userData.hasOwnProperty('password'), 'password exists')
-          assert.equal(userData.password, user.password, 'expected password')
+          assert.equal(userData['password'], user.password, 'expected password')
           assert.strictEqual(typeof userData.password, 'string', 'Property "password is a string' )
           
 
@@ -61,17 +61,18 @@ QUnit.module("User functionalities", ()=> {
           assert.ok(userData.hasOwnProperty('accessToken'), 'accessToken exists')
           assert.strictEqual(typeof userData.accessToken, 'string', 'Property "accessToken is a string') 
 
-          token=userData['accessToken']
-          userId=userData['_id'] 
+          token=userData['accessToken'];
+          userId=userData['_id']; 
 
-          sessionStorage.setItem('meme-user', JSON.stringify(user))
+          sessionStorage.setItem('meme-user', JSON.stringify(user));
 
     }) 
 
     QUnit.test("Login testing returns correct user data", async (assert)=>{
-         let path='/users/login'
+            
+        let path ='users/login'
 
-         let response= await fetch(basetUrl+path+{
+         let response= await fetch (baseUrl + path,  {
             method: 'POST',
             headers: {
                 'content-type':'application/json'
@@ -81,9 +82,8 @@ QUnit.module("User functionalities", ()=> {
 
          assert.ok(response.ok, 'response is succesfull')
          
-         let userData1=await response.json(); 
-
-         console.log(userData1)
+          let userData1=await response.json(); 
+          
 
          assert.ok(userData1.hasOwnProperty('email'), 'email exists')
          assert.equal(userData1['email'], user.email, 'expected email')
@@ -105,22 +105,48 @@ QUnit.module("User functionalities", ()=> {
     })
 })
 
-QUnit.modulle("Meme functionality", ()=>{
+QUnit.module("Meme functionality", () => {
     QUnit.test('Get all memes return correct data', async(assert)=>{
-          let path='/data/meme'
+          
+          let path='data/memes'
           let queryParam='?sortBy=_createdOn%20desc'
 
-          let promis=await fetch(basetUrl+path+queryParam) 
+          let response= await fetch (baseUrl + path + queryParam) 
 
           assert.ok(response.ok, 'response is succsesfyll')
 
-          let jsonMeme=await response.json();
+          let jsonMeme= await response.json();
 
           assert.ok(Array.isArray(jsonMeme),'response ia an Array') 
+          console.log(jsonMeme)
 
-          jsonMeme.forEach(element => { 
-               assert.ok()   
+          jsonMeme.forEach (element => { 
+               assert.ok(element.hasOwnProperty('description'), 'description exists')
+               assert.strictEqual(typeof element.description, 'string', 'Description is a string')
+               
+               assert.ok(element.hasOwnProperty('imageUrl'), 'imageUrl exists')
+               assert.strictEqual(typeof element.imageUrl, 'string', 'Property imageUrl is a string') 
+
+               assert.ok(element.hasOwnProperty('title'), 'title exists')
+               assert.strictEqual(typeof element.title, 'string', 'Property title is a string')
+
+               assert.ok(element.hasOwnProperty('_createdOn'), '_createdOn exists')
+               assert.strictEqual(typeof element._createdOn, 'number', 'Property _createdOn is a number')
+
+               assert.ok(element.hasOwnProperty('_id'), '_id exists')
+               assert.strictEqual(typeof element._id, 'string', 'Property _id is a string')
+
+               assert.ok(element.hasOwnProperty('_ownerId'), '_ownerId exists')
+               assert.strictEqual(typeof element._ownerId, 'string', 'property "_onerId is a string')            
             
-          });
-    })
-})
+           });
+     })
+     QUnit.test("Cretae meme returns correct data", async(assert)=>{
+            let path='data/meme'
+
+            let response=await fetch(baseUrl+path, {
+                
+            })
+     })
+
+}) 
