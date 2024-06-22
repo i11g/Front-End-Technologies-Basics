@@ -194,62 +194,62 @@ QUnit.module("meme functionalities", () => {
 
     
 
-// //     QUnit.test("edit meme", async (assert) => {
-// //         let path = 'data/meme';
+    QUnit.test("edit meme", async (assert) => {
+        let path = 'data/meme';
 
-// //         let random = Math.floor(Math.random() * 100000);
+        let random = Math.floor(Math.random() * 100000);
 
-// //         meme.title = `Edited meme title_${random}`;
+        meme.title = `Edited meme title_${random}`;
 
-// //         let response = await fetch(baseUrl + path + `/${lastCreatedMemeId}`, {
-// //             method : 'PUT',
-// //             headers : {
-// //                 'content-type' : 'application/json',
-// //                 'X-Authorization' : token
-// //             },
-// //             body : JSON.stringify(meme)
-// //         });
+        let response = await fetch(baseUrl + path + `/${lastCreatedMemeId}`, {
+            method : 'PUT',
+            headers : {
+                'content-type' : 'application/json',
+                'X-Authorization' : token
+            },
+            body : JSON.stringify(meme)
+        });
 
-// //         assert.ok(response.ok, "successful response");
+        assert.ok(response.ok, "successful response");
 
-// //         let json = await response.json();
+        let json = await response.json();
         
-// //         assert.ok(json.hasOwnProperty('description'), 'Property "description" exists');
-// //         assert.strictEqual(typeof json.description, 'string', 'Property "description" is a string');
-// //         assert.strictEqual(json.description, meme.description, 'Property "description" has the correct value');
+        assert.ok(json.hasOwnProperty('description'), 'Property "description" exists');
+        assert.strictEqual(typeof json.description, 'string', 'Property "description" is a string');
+        assert.strictEqual(json.description, meme.description, 'Property "description" has the correct value');
 
-// //         assert.ok(json.hasOwnProperty('imageUrl'), 'Property "imageUrl" exists');
-// //         assert.strictEqual(typeof json.imageUrl, 'string', 'Property "imageUrl" is a string');
-// //         assert.strictEqual(json.imageUrl, meme.imageUrl, 'Property "imageUrl" has the correct value');
+        assert.ok(json.hasOwnProperty('imageUrl'), 'Property "imageUrl" exists');
+        assert.strictEqual(typeof json.imageUrl, 'string', 'Property "imageUrl" is a string');
+        assert.strictEqual(json.imageUrl, meme.imageUrl, 'Property "imageUrl" has the correct value');
 
-// //         assert.ok(json.hasOwnProperty('title'), 'Property "title" exists');
-// //         assert.strictEqual(typeof json.title, 'string', 'Property "title" is a string');
-// //         assert.strictEqual(json.title, meme.title, 'Property "title" has the correct value');
+        assert.ok(json.hasOwnProperty('title'), 'Property "title" exists');
+        assert.strictEqual(typeof json.title, 'string', 'Property "title" is a string');
+        assert.strictEqual(json.title, meme.title, 'Property "title" has the correct value');
 
-// //         assert.ok(json.hasOwnProperty('_createdOn'), 'Property "_createdOn" exists');
-// //         assert.strictEqual(typeof json._createdOn, 'number', 'Property "_createdOn" is a number');
+        assert.ok(json.hasOwnProperty('_createdOn'), 'Property "_createdOn" exists');
+        assert.strictEqual(typeof json._createdOn, 'number', 'Property "_createdOn" is a number');
 
-// //         assert.ok(json.hasOwnProperty('_id'), 'Property "_id" exists');
-// //         assert.strictEqual(typeof json._id, 'string', 'Property "_id" is a string');
+        assert.ok(json.hasOwnProperty('_id'), 'Property "_id" exists');
+        assert.strictEqual(typeof json._id, 'string', 'Property "_id" is a string');
 
-// //         lastCreatedMemeId = json._id;
+        lastCreatedMemeId = json._id;
 
-// //         assert.ok(json.hasOwnProperty('_ownerId'), 'Property "_ownerId" exists');
-// //         assert.strictEqual(typeof json._ownerId, 'string', 'Property "_ownerId" is a string');
-// //         assert.strictEqual(json._ownerId, userId, 'Property "_ownerId" has the correct value');
-// //     })
+        assert.ok(json.hasOwnProperty('_ownerId'), 'Property "_ownerId" exists');
+        assert.strictEqual(typeof json._ownerId, 'string', 'Property "_ownerId" is a string');
+        assert.strictEqual(json._ownerId, userId, 'Property "_ownerId" has the correct value');
+    })
 
-// //     QUnit.test("delete meme", async (assert) => {
-// //         let path = 'data/meme';
+    QUnit.test("delete meme", async (assert) => {
+        let path = 'data/meme';
 
 
-// //         let response = await fetch(baseUrl + path + `/${lastCreatedMemeId}`, {
-// //             method : 'DELETE',
-// //             headers : { 'X-Authorization' : token }
-// //         });
+        let response = await fetch(baseUrl + path + `/${lastCreatedMemeId}`, {
+            method : 'DELETE',
+            headers : { 'X-Authorization' : token }
+        });
 
-// //         assert.ok(response.ok, "successful response");
-// //     })
+        assert.ok(response.ok, "successful response");
+    })
  });
 
 

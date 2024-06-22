@@ -7,6 +7,14 @@ const user={
     gender:"male"
 } 
 
+const meme={
+    title:"",
+    description:"",
+    imageUrl: "/iamges/2.png"
+} 
+
+let lasCreatedMemeId="";
+
 let token= "";
 let userId="";
 
@@ -141,12 +149,49 @@ QUnit.module("Meme functionality", () => {
             
            });
      })
-     QUnit.test("Cretae meme returns correct data", async(assert)=>{
+     QUnit.test("Create meme returns correct data", async(assert)=>{
             let path='data/meme'
+            let random=Math.floor(Math.random()*1000) 
+
+            let randomTtitle=`random_title_${random}`
+            let randomDescription=`random_description_${random}`
+
+            meme.title=randomTtitle;
+            meme.description=randomDescription
 
             let response=await fetch(baseUrl+path, {
-                
-            })
+                    method:'POST',
+                    headers: {
+                        'content-type':'application/json',
+                        'X-Authorization': token
+                    },
+                    body: JSON.stringify(meme) 
+                }) 
+
+            assert.ok(response.ok, 'response is sucsesfull')
+            let memeData=await response.json();
+            console.log(memeData) 
+            
+            assert.ok(memeData.hasOwnProperty('description'), 'description exists')  
+            assert.equal(memeData['description'], meme.description, 'description is correct')
+            assert.strictEqual(typeof memeData.description, 'string', 'Property description is a string')
+            
+            assert.ok(memeData.hasOwnProperty('title'), 'title exists')
+            assert.equal(memeData['title'], meme.title, 'expected title')
+            assert.strictEqual(typeof memeData.title, 'string', 'Property "title is a string')
+
+            assert.ok(memeData.hasOwnProperty('imageUrl'), 'imageUrl exists')
+            assert.equal(memeData['imageUrl'], meme.imageUrl, 'expected imageUrl')
+            assert.strictEqual(typeof memeData.imageUrl, 'string', 'Property "imageUrl" is a string')
+            
+            assert.ok(memeData.hasOwnProperty('_id'), '_id exists')
+            assert.strictEqual(typeof memeData._id, 'string', 'Property _id is a string') 
+
+            lasCreatedMemeId=memeData['_id']
+     })
+
+     Qunit.test('Edited meme returts correct data', async (assert) => {
+        
      })
 
 }) 
