@@ -190,8 +190,57 @@ QUnit.module("Meme functionality", () => {
             lasCreatedMemeId=memeData['_id']
      })
 
-     Qunit.test('Edited meme returts correct data', async (assert) => {
+     QUnit.test('Edited meme returts correct data', async (assert) => {
+            let path='data/meme' 
+
+            let random=Math.floor(Math.random()*1000) 
+
+            meme.title=`Edited title:${random}`
+            
+            let response= await fetch(baseUrl + path + `/${lasCreatedMemeId}`, {
+                method: 'PUT',
+                headers: {
+                     'content-type':'application/json',
+                     'X-Authorization':token
+                },
+                body: JSON.stringify(meme)
+            }) 
+
+            assert.ok(response.ok,'response is successful') 
+
+            let editData=await response.json(); 
+
+            assert.ok(editData.hasOwnProperty('title'), 'title exists')
+            assert.equal(editData['title'], meme.title, 'expected title')
+            assert.strictEqual(typeof editData.title, 'string', 'Property "title" is a string')
+
+            assert.ok(editData.hasOwnProperty('description'), 'description exists')
+            assert.equal(editData[description], meme.description, 'expected description')
+            assert.strictEqual(typeof editData.description, 'string', 'Property "description" is a string')
+
+            assert.ok(editData.hasOwnProperty('_id'), '_id exists')
+            assert.equal(editData['_id'], meme._id, 'expected _id')
+            assert.strictEqual(typeof editData._id, 'string', 'property "_id" is a string') 
+
+            assert.ok(editData.hasOwnProperty('imageUrl'), 'imageUrl exists')
+            assert.equal(editData['imageUrl'], meme.imageUrl, 'imageUrl is as expected')
+            assert.strictEqual(typeof editData.imageUrl, 'string', 'Property imageUrl is a string')
+
+     })
+
+     QUnit.test("Delete returns correct data", async(assert)=>{
+        let path='/data/meme'
+
+        let response=await fetch(baseUrl+path+`/${lasCreatedMemeId}`, {
+            method:'DELETE',
+            headers: {
+                'X-Authorization':token
+            }
+        }) 
         
+        assert.ok(response.ok, 'response is successful')
+
+
      })
 
 }) 
