@@ -240,7 +240,6 @@ QUnit.module("Meme functionality", () => {
         
         assert.ok(response.ok, 'response is successful')
 
-
      })
 
 }) 
