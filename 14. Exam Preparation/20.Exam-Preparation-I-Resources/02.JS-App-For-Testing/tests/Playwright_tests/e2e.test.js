@@ -131,6 +131,86 @@ describe("e2e tests", () => {
              await expect(page.locator('nav>>text-My Profile')).toBeHidden() 
         })        
     })
+    describe('testing CRUD functionallity', async()=>{ 
+        beforeEach(async()=> {
+            await page.goto(host)
+            await page.click('text=Login')
+            await page.waitForSelector('form')
+            await page.locator('#email').fill(user.email)
+            await page.locator('#password').fill(user.password)
+            await page.click('[type="submit]')
+        })
+        test('create meme return correct API calls', async()=>{
+              await page.locator('#Create Meme').click()
+              await page.waitForSelector('form')
+
+              await page.fill('[name="title"], Random title')
+              await page.fill('[name="description"], Random description')
+              await page.fill('[name=i"mageUrl"], https://jpeg.org/images/jpeg-home.jpg ') 
+
+              let [response] = await Promise.all([
+                  page.waitForResponse(response=>response.url().includes('/data/memes') && response.status()===200),
+                  page.click('[type="submit"')
+              ]) 
+
+              expect(response.ok).toBeTruthy() 
+
+              let memeData=await response.json();
+              expect(memeData.title).toEqual('Random title')
+              expect(memeData.description).toEqual('Random description')
+              expect(memeData.imageUrl).toEqual('https://jpeg.org/images/jpeg-home.jpg')
+        })
+        test('details shows edit and delete buttons for an owner', async()=>{
+             await page.click('text=My Profile')
+
+             await page.locator('#Details').first().click() 
+
+             await page.locator('#Edit').toBeVisible()
+             await page.locator('text=Delete').toBeVisible()
+        })
+
+        test('edit meme returns correct API calls', async()=>{ 
+
+            await page.click('text=My Profile')
+            await page.locator('text=Details').first().click() 
+
+            await page.click('text=Edit')
+            await page.waitForSelector('form')
+
+            await page.locator('#title').fill('Random title changed') 
+            
+            let [response] = await Promise.all([
+               page.waitForResponse(response=>response.url().includes('/data/memes')&&response.status()===200),
+                          
+               page.click('[type="submit"]')
+
+            ]) 
+
+            expect(response.ok).toBeTruthy() 
+
+            let editMeme=await response.json();
+            await (editMeme.title).toEqual('Random title changed')
+            await (editMeme.rescription).toEdual('Random description')
+            await (editmeme.imageUrl).toEdual("https://jpeg.org/images/jpeg-home.jpg")
+
+               
+
+        })
+        test('delete meme returns correct API calls', async ()=>{
+                 
+            await page.click('text=My Profile')
+
+            await page.locator('#Details').firct().click()
+            await page.waitForSelector('form') 
+
+            let [response]=await Promise.all([
+              page.waitForResponse(response=>response.url().includes('/data/memes')&& response.status()===200),
+              page.click('text=Delete')
+            ])
+            
+            espect(response.ok).toBeTruthy()
+         })
+    })
     
 })
 
