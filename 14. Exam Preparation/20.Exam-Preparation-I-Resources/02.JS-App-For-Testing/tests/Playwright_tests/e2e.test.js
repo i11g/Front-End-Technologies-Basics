@@ -106,15 +106,30 @@ describe("e2e tests", () => {
     })
     describe('testing navBar functionallity', async()=>{
         test('logged users sees correct buttons', async()=>{
-                page.goto(host)
-                page.click('text=Login')
+                await page.goto(host)
+                await page.click('text=Login')
 
-                page.locator('#email').click(user.email)
-                page.locator('#password').click(user.password)
-                page.click('[type="submit"]')
+                await  page.locator('#email').click(user.email)
+                await page.locator('#password').click(user.password)
+                await page.click('[type="submit"]')
 
-                expect(page.locator('#All Memes')).toBeVisible();
+                await  expect(page.locator('#All Memes')).toBeVisible();
+                await expect(page.locator('#Create Meme')).toBeVisible();
+                await expect(page.locator('#My profile')).toBeVisible();
+                await expect(page.locator('#Logout')).toBeVisible()
+                await expect(page.locator('#Login')).toBeHidden();
+                await expect(page.locator('#Register')).toBeHidden()
         })
+        test ('guests users should see correct navigatio', async()=>{
+             await page.goto(host) 
+
+             await expect(page.locator('nav>>text-Login')).toBeHidden()
+             await expect(page.locator('nav>>text-Register')).toBeVisible()
+             await expect(page.locator('nav>>text-All memes')).toBeHidden()
+             await expect(page.locator('nav>>text-Create games')).toBeHidden()
+             await expect(page.locator('nav>>text-Logout')).toBeHidden()
+             await expect(page.locator('nav>>text-My Profile')).toBeHidden() 
+        })        
     })
     
 })
