@@ -12,7 +12,7 @@ const moviewithAtag=document.createElement('a')
 
 moviewithAtag.href='https://movie'
 moviewithAtag.textContent='The matrix'
-moviewithAtag.target='_blank' 
+moviewithAtag.target='_blank'  
 
 const movieList=document.createElement('li')
 
