@@ -108,7 +108,7 @@ function solution() {
 
             articlePending=articleElement 
 
-            let resolveBtn=document.createElement('button')
+            let resolveBtn= document.createElement('button')
             resolveBtn.setAttribute('class', 'resolve-btn')
             resolveBtn.textContent = "Resolved" 
 
@@ -118,6 +118,26 @@ function solution() {
             pendingElement.appendChild(liPendingElement) 
 
             liElement.remove()
+        }
+
+       resolveBtn.addEventListener('click', resolveOn)
+
+        function resolveOn() {
+
+           liResolveElement=document.createElement('li') 
+           liResolveElement.setAttribute('class', 'problem-content')
+
+           let resolveArticle=document.createElement('article')
+           resolveArticle=articlePending
+
+           let clearBtn=document.createElement('button')
+           clearBtn.setAttribute('class', 'clear-btn')
+           clearBtn.textContent="Clear" 
+
+           liResolveElement.appendChild(resolveArticle)
+           liResolveElement.appendChild(clearBtn) 
+
+           resolvedElement.appendChild(liResolveElement)
         }
     }
 }
