@@ -5,7 +5,6 @@ This repository contains my solutions of the tasks and projects included in Fron
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
-* [Features](#features)
 * [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
 * [License](#license) 
@@ -17,8 +16,7 @@ The course is part of SoftUni QA Automation Program and focus on:
 - Working with basic concepts of the JavaScript language
 - Java Script async functions and promises
 - Test management with the qUnit 
-- Working with the Jasmine 
-
+- Working with the Pkaywright
 
 ## Technologies Used
 - HTML 5, CSS and Java Script
