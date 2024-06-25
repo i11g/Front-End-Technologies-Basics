@@ -7,7 +7,18 @@ const user={
 
 let token=""
 let userId=""
-QUnit.config.rearange=false 
+
+const myEvent ={
+    author: "Random Author",
+    date: "24.06.2024",
+    title: "",
+    description: "",
+    imageUrl: "/images/2.png"
+} 
+
+let lastCreatedEventId=""
+
+QUnit.config.reorder=false 
 
 QUnit.module("User functionallity", ()=>{
     QUnit.test("registration", async (assert)=>{
@@ -26,9 +37,8 @@ QUnit.module("User functionallity", ()=>{
             body:JSON.stringify(user)
         }) 
 
-        let jsonData= await response.json() 
-        
-        console.log(jsonData) 
+        let jsonData= await response.json()         
+       
         //assert              
         assert.ok(response.ok) 
 
@@ -92,4 +102,162 @@ QUnit.module("User functionallity", ()=>{
 
         sessionStorage.getItem('event-user', JSON.stringify(user))
     })
+})
+QUnit.module("Event functionallity", ()=>{
+      QUnit.test("get all events testing", async(assert)=>{
+        //arrange   
+         let path='/data/theaters'
+         let queryparams='?sortBy=_createdOn%20desc&distinct=title' 
+
+      //act 
+        let response= await fetch(baseURL+path+queryparams, {
+            method:"GET"
+        })
+
+        //assert 
+
+        assert.ok(response.ok, 'response is successfull') 
+
+        let jsonData=await response.json()
+
+        assert.ok(Array.isArray(jsonData), 'response is array') 
+
+        jsonData.forEach(element => {
+            assert.ok(element.hasOwnProperty('author'), 'author exists')
+            assert.strictEqual(typeof element.author, 'string', 'Property is a string')
+
+            assert.ok(element.hasOwnProperty('title'), 'title exists')
+            assert.strictEqual(typeof element.title, 'string', 'Property is a string')
+
+            assert.ok(element.hasOwnProperty('_ownerId'), '_ownerId exists')
+            assert.strictEqual(typeof element._ownerId, 'string', 'Property is a string')
+
+            assert.ok(element.hasOwnProperty('date'), 'date exists')
+            assert.strictEqual(typeof element.date, 'string', 'Property is a string')
+
+            assert.ok(element.hasOwnProperty('imageUrl'), 'iamgeUrl exists')
+            assert.strictEqual(typeof element.imageUrl, 'string', 'Property is a string')
+
+            assert.ok(element.hasOwnProperty('description'), 'description exists')
+            assert.strictEqual(typeof element.description, 'string', 'Property is a string')
+            
+            assert.ok(element.hasOwnProperty('_createdOn'), '_createdOn exists')
+            assert.strictEqual(typeof element._createdOn, 'number', 'Property is a number')
+
+            assert.ok(element.hasOwnProperty('_id'), '_id exists')
+            assert.strictEqual(typeof element._id, 'string', 'Property is a string')            
+            
+        });
+
+      })
+      QUnit.test("create event testing", async(assert)=>{
+        //arrange       
+        let path='/data/theaters'
+        let random=Math.floor(Math.random()*1000) 
+        
+        let randomtitle=`random_title_${random}`
+        let randomDescription=`random_description_${random}`
+        myEvent.title=randomtitle
+        myEvent.description=randomDescription
+       
+        //act 
+       let response =await fetch(baseURL+path, {
+         method:"POST",
+         headers: {
+            'content-type' : 'application/json',
+            'X-Authorization' : token
+         },
+         body: JSON.stringify(myEvent)
+       }) 
+
+       //assert 
+
+       assert.ok(response.ok, 'response is successfull') 
+
+       let eventData=await response.json() 
+
+       console.log(eventData) 
+
+       assert.ok(eventData.hasOwnProperty('author'), 'author exists')
+       assert.equal(eventData['author'], myEvent.author, 'expected author')
+       assert.strictEqual(typeof eventData.author, 'string', 'Property author is a string')
+
+       assert.ok(eventData.hasOwnProperty('date'), 'date exists')
+       assert.equal(eventData['date'], myEvent.date, 'expected author')
+       assert.strictEqual(typeof eventData.date, 'string', 'Property author is a string')
+
+       assert.ok(eventData.hasOwnProperty('description'), 'description exists')
+       assert.equal(eventData['description'], myEvent.description, 'expected author')
+       assert.strictEqual(typeof eventData.description, 'string', 'Property author is a string') 
+
+       assert.ok(eventData.hasOwnProperty('title'), 'title exists')
+       assert.equal(eventData['title'], myEvent.title, 'expected author')
+       assert.strictEqual(typeof eventData.description, 'string', 'Property author is a string') 
+       
+       assert.ok(eventData.hasOwnProperty('_id'), '_id exists')
+       assert.strictEqual(typeof eventData._id, 'string', 'Property _id is a string')
+      
+      lastCreatedEventId=eventData['_id']
+
+      }) 
+
+      QUnit.test("edit event testing", async(assert)=>{
+        //arrange      
+        let path='/data/theaters'
+        let random=Math.floor(Math.random()*1000)
+        myEvent.title=`Edited title ${random}`
+        
+        //act 
+        let response= await fetch(baseURL+ path + `/${lastCreatedEventId}`, {
+            method:"PUT",
+            headers: {
+               'content-type' : 'application/json',
+               'X-Authorization' : token
+            },
+            body: JSON.stringify(myEvent)
+        }) 
+        
+        assert.ok(response.ok, 'response is successfull') 
+
+        let eventData=await response.json()
+
+       assert.ok(eventData.hasOwnProperty('author'), 'author exists')
+       assert.equal(eventData['author'], myEvent.author, 'expected author')
+       assert.strictEqual(typeof eventData.author, 'string', 'Property author is a string')
+
+       assert.ok(eventData.hasOwnProperty('date'), 'date exists')
+       assert.equal(eventData['date'], myEvent.date, 'expected author')
+       assert.strictEqual(typeof eventData.date, 'string', 'Property author is a string')
+
+       assert.ok(eventData.hasOwnProperty('description'), 'description exists')
+       assert.equal(eventData['description'], myEvent.description, 'expected author')
+       assert.strictEqual(typeof eventData.description, 'string', 'Property author is a string') 
+
+       assert.ok(eventData.hasOwnProperty('title'), 'title exists')
+       assert.equal(eventData['title'], myEvent.title, 'expected author')
+       assert.strictEqual(typeof eventData.description, 'string', 'Property author is a string') 
+       
+       assert.ok(eventData.hasOwnProperty('_id'), '_id exists')
+       assert.strictEqual(typeof eventData._id, 'string', 'Property _id is a string') 
+
+       lastCreatedEventId=eventData['_id']
+
+
+      })
+      QUnit.test("delete event testing", async(assert)=>{
+        //arrange      
+        let path='/data/theaters'
+        //act
+        let response=await fetch(baseURL+path+`/${lastCreatedEventId}`, {
+            method:'DELETE',
+            headers: {
+                'X-Authorization' : token
+            }
+        })
+         
+            //assert
+            assert.ok(response.ok, 'response is successfull')
+      })
+
+
 })
