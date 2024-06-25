@@ -54,7 +54,7 @@ function solution() {
 
         let continueBtnElement=document.createElement('button')
         continueBtnElement.setAttribute('class', 'continue-btn')
-        continueBtnElement.textContent="Continue"
+        continueBtnElement.textContent= "Continue"
 
         articleElement.appendChild(fromParagraph)
         articleElement.appendChild(categoryParagraph)
@@ -86,14 +86,38 @@ function solution() {
         
         function editOn() {
            
-          employeeElement.textContent=employeeData
-          categoryElement.textContent=categoryData
-          urgencyElement.textContent=urgencyData
-          assignedTeamElement.textContent=assignedData
-          descriptionElement.textContent=descriptionData 
+          employeeElement.value=employeeData
+          categoryElement.value=categoryData
+          urgencyElement.value=urgencyData
+          assignedTeamElement.value=assignedData
+          descriptionElement.value=descriptionData 
 
-          liElement.remove()
+          liElement.remove() 
 
+          addBtnElement.disabled=false
+        } 
+        
+        continueBtnElement.addEventListener('click', continueOn)
+
+        function continueOn () {
+             
+            let liPendingElement=document.createElement('li')
+            liPendingElement.setAttribute('class', 'problem-content')
+            
+            let articlePending=document.createElement('article') 
+
+            articlePending=articleElement 
+
+            let resolveBtn=document.createElement('button')
+            resolveBtn.setAttribute('class', 'resolve-btn')
+            resolveBtn.textContent = "Resolved" 
+
+            liPendingElement.appendChild(articlePending)
+            liPendingElement.appendChild(resolveBtn)
+
+            pendingElement.appendChild(liPendingElement) 
+
+            liElement.remove()
         }
     }
 }
