@@ -94,8 +94,8 @@ function solution() {
 
           liElement.remove() 
 
-          addBtnElement.disabled=false
-        } 
+        addBtnElement.disabled=false
+        }   
         
         continueBtnElement.addEventListener('click', continueOn)
 
@@ -108,27 +108,27 @@ function solution() {
 
             articlePending=articleElement 
 
-            let resolveBtn= document.createElement('button')
-            resolveBtn.setAttribute('class', 'resolve-btn')
-            resolveBtn.textContent = "Resolved" 
+            let revBtn= document.createElement('button')
+            revBtn.setAttribute('class', 'resolve-btn')
+            revBtn.textContent = "Resolved" 
 
             liPendingElement.appendChild(articlePending)
-            liPendingElement.appendChild(resolveBtn)
+            liPendingElement.appendChild(revBtn)
 
             pendingElement.appendChild(liPendingElement) 
 
             liElement.remove()
-        }
-
-       resolveBtn.addEventListener('click', resolveOn)
+            addBtnElement.disabled=false
+         
+        revBtn.addEventListener('click', resolveOn)
 
         function resolveOn() {
 
-           liResolveElement=document.createElement('li') 
+           let liResolveElement = document.createElement('li') 
            liResolveElement.setAttribute('class', 'problem-content')
 
            let resolveArticle=document.createElement('article')
-           resolveArticle=articlePending
+           resolveArticle=articleElement
 
            let clearBtn=document.createElement('button')
            clearBtn.setAttribute('class', 'clear-btn')
@@ -137,11 +137,20 @@ function solution() {
            liResolveElement.appendChild(resolveArticle)
            liResolveElement.appendChild(clearBtn) 
 
-           resolvedElement.appendChild(liResolveElement)
+           resolvedElement.appendChild(liResolveElement) 
+
+           liPendingElement.remove() 
+           
+
+           clearBtn.addEventListener('click', clearOn) 
+              
+           function clearOn () {
+              liResolveElement.remove()
+           }
         }
     }
 }
-
-
+   
+}  
     
     
