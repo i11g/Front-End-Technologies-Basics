@@ -143,7 +143,7 @@ function solve() {
                    liFinishedElement.remove()
                
                 }
-                
+
                }
 
                
