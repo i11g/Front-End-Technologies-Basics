@@ -186,4 +186,67 @@ QUnit.module("Book functionallity", ()=>{
        lastCreatedBookId=bookData['_id']
 
    })
+   QUnit.test('edit book testing', async(assert)=>{
+        //arrane
+        let path='/data/books/' + `${lastCreatedBookId}`
+        let random = Math.floor(Math.random()*1000) 
+
+        let randomEditedTitle='Edited book title' +`${random}`
+        book.title=randomEditedTitle 
+        
+        //act
+        let reponse =await fetch(baseURL+ path, {
+              method: 'PUT',
+              headers: {
+                'content-type' : 'application/json',
+                 'X-Authorization' : token
+              },
+              body: JSON.stringify(book) 
+        }) 
+        
+             let editData=await reponse.json()
+             console.log(editData)
+             assert.ok(reponse.ok, 'reponse is successfull')
+            
+             assert.ok(editData.hasOwnProperty('title'), 'title esists')
+             assert.equal(editData['title'], editData.title, 'expected title')
+             assert.strictEqual(typeof editData.title, 'string', 'Property title is a string')
+    
+            assert.ok(editData.hasOwnProperty('description'), 'description esists')
+            assert.equal(editData['description'], editData.description, 'expected description')
+            assert.strictEqual(typeof editData.description, 'string', 'Property description is a string')
+    
+            assert.ok(editData.hasOwnProperty('type'), 'type esists')
+            assert.equal(editData['type'], editData.type, 'expected type')
+            assert.strictEqual(typeof editData.type, 'string', 'Property type is a string')
+    
+            assert.ok(editData.hasOwnProperty('_ownerId'), '_ownerId esists')
+            assert.strictEqual(typeof editData._ownerId, 'string', 'Property _ownerrId is a string')
+    
+            assert.ok(editData.hasOwnProperty('_id'), '_id esists')
+            assert.strictEqual(typeof editData._id, 'string', 'Property _ id is a string')
+    
+            assert.ok(editData.hasOwnProperty('imageUrl'), 'imageUrl esists')
+            assert.strictEqual(typeof editData.imageUrl, 'string', 'Property imageUrl is a string') 
+            
+            assert.ok(editData.hasOwnProperty('_updatedOn'), '_updatedOn exists')
+            assert.strictEqual(typeof editData._updatedOn, 'number', 'Property _updayedOn is a string') 
+            //lastCreatedBookId=editData['_id']         
+
+   })
+   QUnit.test('delete book testing', async(assert)=>{
+        //arrange   
+        let path='/data/books/' + `${lastCreatedBookId}`
+        //act 
+        let response = await fetch(baseURL+path, {
+            method: "DELETE",
+            headers:{
+                'X-Authorization' : token
+            }
+        })
+
+        //assert 
+
+        assert.ok(response.ok, 'response is successfull')
+   })
 })
