@@ -34,7 +34,33 @@ describe("e2e tests", () => {
 
     
     describe("authentication", () => {
-        
+        test('register with valid data returns correct API calls', async()=>{
+             //arrange 
+              await page.goto(host)
+              await page.click('text=Register')
+              await page.waitForSelector('form') 
+              
+              let random=Math.floor(Math.random()*1000) 
+              let randomEmail=`abv${random}@abv.bg`
+              user.email=randomEmail
+
+
+              //act 
+              await page.locator('#email').fill(user.email)
+              await page.locator('#password').fill(user.password)
+              await page.locator('#repeat-pass').fill(user.confirmPass) 
+
+              let [response] = await Promise.all([
+                    page.waitForResponse(response=>response.url().includes("/users/register") && response.status()==200),
+                    page.click('[type="submit"]')
+              ])
+
+              let jsonData=await response.json()
+
+              expect(response.ok).toBeTruthy()
+              expect(jsonData.email).toEqual(user.email)
+              expect(jsonData.password).toEqual(user.password)
+        })
     })
 
     describe("navbar", () => {
