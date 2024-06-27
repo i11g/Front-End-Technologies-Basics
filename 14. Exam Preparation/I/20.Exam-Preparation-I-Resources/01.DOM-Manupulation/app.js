@@ -13,9 +13,9 @@ function solve() {
     let snowManPreviewElement=document.querySelector('.snowman-preview')
     let yourSnowManElement=document.querySelector('.snow-list') 
 
-    let mainElement=document.getElementById('#hero')
+    let mainElement=document.getElementById("hero")
     let bodyElement=document.querySelector('.body')
-    let backImageEelement=document.getElementById('#back-img') 
+    let backImageEelement=document.getElementById("back-img") 
 
     btnAddElement.addEventListener('click', nextOn) 
 
@@ -32,24 +32,27 @@ function solve() {
         }   
 
             let liElement=document.createElement('li')
-            liElement.setAttribute('class', 'snowman-info')
+            liElement.setAttribute('class', 'snowman-info') 
+
+            let btnContainer=document.createElement('div')
+            btnContainer.setAttribute('class', 'btn-container')
             
             let articleElement=document.createElement('article')
 
             let nameParagraphElement=document.createElement('p')
-            nameParagraphElement.textContent=snowElement.value
+            nameParagraphElement.textContent=`Name: ${snowElement.value}`
             
             let heightParagraph=document.createElement('p')
-            heightParagraph.textContent=heightElement.value 
+            heightParagraph.textContent=`Height: ${heightElement.value}` 
 
             let locationParagraphElement=document.createElement('p')
-            locationParagraphElement.textContent=locationElement.value
+            locationParagraphElement.textContent=`Location: ${locationElement.value}`
 
             let creatorParagraphElement=document.createElement('p')
-            creatorParagraphElement.textContent=creatorElement.value
+            creatorParagraphElement.textContent=`Creator: ${creatorElement.value}`
 
             let specialAtributeParagraph=document.createElement('p')
-            specialAtributeParagraph.textContent=specialAttributeElement.value 
+            specialAtributeParagraph.textContent=`Attribute: ${specialAttributeElement.value}` 
 
             let editBtnElement=document.createElement('button')
             editBtnElement.setAttribute('class', 'edit-btn')
@@ -66,8 +69,11 @@ function solve() {
         articleElement.appendChild(specialAtributeParagraph) 
 
         liElement.appendChild(articleElement)
-        liElement.appendChild(editBtnElement)
-        liElement.appendChild(nextBtnElement) 
+        btnContainer.appendChild(editBtnElement)
+        btnContainer.appendChild(nextBtnElement)
+        
+        liElement.appendChild(articleElement)
+        liElement.appendChild(btnContainer)
 
         snowManPreviewElement.appendChild(liElement)
 
@@ -96,6 +102,43 @@ function solve() {
             btnAddElement.disabled=false 
 
             liElement.remove()
+        } 
+
+        nextBtnElement.addEventListener('click', nextOn) 
+        function nextOn() {
+             let nextLielement=document.createElement('li')
+             nextLielement.setAttribute('class', 'snowman-content') 
+             
+             let sendArticle=document.createElement('article') 
+             sendArticle=articleElement
+
+             let sendBtnElement=document.createElement('button')
+             sendBtnElement.setAttribute('class', 'send-btn')
+             sendBtnElement.textContent="Send" 
+             
+             sendArticle.appendChild(sendBtnElement) 
+             nextLielement.appendChild(sendArticle)
+             yourSnowManElement.appendChild(nextLielement)
+             
+             liElement.remove() 
+
+             sendBtnElement.addEventListener('click', sendOn) 
+             
+             function sendOn(){
+                mainElement.remove()   
+                let backBtnElement=document.createElement('button')
+                  backBtnElement.setAttribute('class', 'back-btn')
+                  backBtnElement.textContent="Back" 
+
+                   
+                  backImageEelement.hidden=false
+                  bodyElement.appendChild(backBtnElement) 
+                  
+                  backBtnElement.addEventListener('click', backOn)
+                  function backOn() {
+                      window.location.reload()
+                  }
+             }
         }
     }
 } 
