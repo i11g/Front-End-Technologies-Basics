@@ -172,7 +172,30 @@ describe("e2e tests", () => {
                   expect(response.ok).toBeTruthy()
                   expect(createData.title).toEqual('Random title')
                   expect(createData.description).toEqual('Random book description')
-                  expect(createData.imageUrl).toEqual('http://images/book.png')                     
+                  expect(createData.imageUrl).toEqual('http://images/book.png')  
+                  expect(createData.type).toEqual('Other')                   
+              })
+              test("edit book returns correct API calls", async()=>{
+                     await page.click('text=My Books')
+                     await page.locator('text=Details').first().click()
+                     await page.click('text=Edit')
+                     await page.waitForSelector('form') 
+
+                     await page.fill('[name="title"]', "Random edited title")
+                     await page.locator('#type').selectOption('Other') 
+
+                     let [response]=await Promise.all([
+                         page.waitForResponse(response=>response.url().includes('/data/books')&&response.status()==200),
+                         page.click('[type="submit"]')
+                     ]) 
+
+                     let editData=await response.json() 
+                     
+                     expect(response.ok).toBeTruthy()
+                     expect(editData.title).toBe("Random edited title")
+                     expect(editData.description).toBe("Random book description")
+                     expect(editData.imageUrl).toBe("http://images/book.png")
+                     expect(editData.type).toEqual('Other')
               })
     })
 })
