@@ -61,13 +61,118 @@ describe("e2e tests", () => {
               expect(jsonData.email).toEqual(user.email)
               expect(jsonData.password).toEqual(user.password)
         })
+        test("login wiht valid data returns correct API calls", async()=> {
+               //arrange 
+               await page.goto(host)
+               await page.click('text=Login')
+               await page.waitForSelector('form') 
+
+               await page.locator('#email').fill(user.email)
+               await page.locator('#password').fill(user.password)
+               
+
+               //act 
+
+               let [response]=await Promise.all([
+                   page.waitForResponse(response=>response.url().includes("/users/login") && response.status()==200),
+                   page.click('[type="submit"]')
+               ]) 
+
+               //assert
+               let loginData=await response.json()
+               
+               expect(response.ok).toBeTruthy()
+               expect(loginData.email).toBe(user.email)
+               expect(loginData.password).toBe(user.password)
+        })
+         test('logout returns correct API calls', async()=>{
+               //arrange
+               await page.goto(host)
+               await page.click('text=Login')
+               await page.waitForSelector('form')
+
+               await page.locator('#email').fill(user.email)
+               await page.locator('#password').fill(user.password)
+               await page.click('[type="submit"]')
+
+               //act
+
+               let [response]=await Promise.all([
+                    page.waitForResponse(response=>response.url().includes('/users/logout')&&response.status()==204),
+                    page.click('text=Logout')
+               ])
+
+               //assert
+               expect(response.ok).toBeTruthy()
+               await page.waitForSelector('text=Login')
+               expect(page.url()).toBe(host+'/')
+         })
     })
 
-    describe("navbar", () => {
-        
+    describe("navbar", () => { 
+        test("testing navigation for logged-in users", async()=> {
+            await page.goto(host)
+            await page.click('text=Login')
+            await page.waitForSelector('form')
+
+            await page.locator('#email').fill(user.email)
+            await page.locator('#password').fill(user.password)
+            await page.click('[type="submit"]')
+
+            await expect(page.locator('nav>> text=Dashboard')).toBeVisible()
+            await expect(page.locator('nav>> text=My Books')).toBeVisible()
+            await expect(page.locator('nav>> text=Add Book')).toBeVisible()
+            await expect(page.locator('nav>> text=Logout')).toBeVisible()
+
+            await expect(page.locator('nav>> text=Login')).toBeHidden()
+            await expect(page.locator('nav>> text=Register')).toBeHidden()
+        })
+        test("testing navigation for guest users", async()=>{
+            //arrange&act   
+            await page.goto(host)
+            //assert
+            await expect(page.locator('text=Register')).toBeVisible()
+            await expect(page.locator('text=Login')).toBeVisible()
+            await expect(page.locator('nav>> text=Dashboard')).toBeVisible()
+
+            await expect(page.locator('text=My books')).toBeHidden()
+            await expect(page.locator('text=Add books')).toBeHidden()
+            await expect(page.locator('text=Logout')).toBeHidden()
+
+        })
+
     });
 
     describe("CRUD", () => {
-        
+              beforeEach(async()=>{
+                        await page.goto(host)
+                        await page.click('text=Login')
+                        await page.waitForSelector('form')
+                        await page.locator('#email').fill(user.email)
+                        await page.locator('#password').fill(user.password)
+                        await page.click('[type="submit"]')
+              })
+              test("create book returns correct API calls", async()=>{
+                    //arrange 
+                     await page.click('nav>> text=Add Book')
+                     await page.waitForSelector('form')
+
+                     await page.fill('[name="title"]', "Random title")
+                     await page.fill('[name="description"]', "Random book description")
+                     await page.fill('[name="imageUrl"]', "http://images/book.png")
+                     await page.locator('#type').selectOption('Other') 
+                  //act
+                  let [response]=await Promise.all([
+                       page.waitForResponse(response=>response.url().includes('/data/books')&&response.status()==200),
+                       page.click('[type="submit"]')
+                  ])
+                  let createData=await response.json() 
+
+                  //arrange
+                  expect(response.ok).toBeTruthy()
+                  expect(createData.title).toEqual('Random title')
+                  expect(createData.description).toEqual('Random book description')
+                  expect(createData.imageUrl).toEqual('http://images/book.png')                     
+              })
     })
 })
