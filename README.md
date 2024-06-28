@@ -16,10 +16,11 @@ The course is part of SoftUni QA Automation Program and focus on:
 - Working with basic concepts of the JavaScript language
 - Java Script async functions and promises
 - Test management with the qUnit 
-- Working with the Pkaywright
+- Working with the Playwright
 
 ## Technologies Used
-- HTML 5, CSS and Java Script
+- HTML 5, CSS, Java Script
+- QUnit, Playwright 
 
 ## Acknowledgements
 
