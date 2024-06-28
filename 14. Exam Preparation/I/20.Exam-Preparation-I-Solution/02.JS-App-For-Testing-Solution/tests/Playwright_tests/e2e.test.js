@@ -50,12 +50,13 @@ describe("e2e tests", () => {
             await page.locator("#email").fill(user.email);
             await page.locator("#password").fill(user.password);
             await page.locator("#repeatPass").fill(user.confirmPass);
+
             let [response] = await Promise.all([
                 page.waitForResponse(response => response.url().includes('/users/register') && response.status() === 200),
                 page.click('[type="submit"]')
             ]);
             
-            await expect(response.ok()).toBeTruthy();
+            expect(response.ok()).toBeTruthy();
             let userData = await response.json();
 
             expect(userData.email).toBe(user.email);
